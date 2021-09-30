@@ -216,6 +216,8 @@ template {
   overflow: hidden;
 }
 
+// GENERAL
+
 *,
 *::before,
 *::after {
@@ -245,7 +247,7 @@ $color-brown: #866335;
 $color-red: #7c2739;
 
 // SPACING
-$space-lrg: 5rem;
+$space-xl: 5rem;
 $space-lrg: 2rem;
 $space-med: 1.5rem;
 $space-sml: 1rem;
@@ -265,21 +267,28 @@ $fs-sml: 1.25rem;
 $fs-xs: 1rem;
 
 .main {
-  height: 100vh;
+  // height: 100vh;
   max-width: 1200px;
   background: $color-white;
   margin: 0 auto;
   font-family: $font-primary;
   color: $color-font;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 15px;
+  border: 1px solid $color-green--light;
+  
+  display: grid;
+  // ! Add send section
+  grid-template-rows: 7rem minmax(calc(100vh - 7rem), min-content);
 }
 
 .header {
-  height: 5rem;
+  height: 7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $space-med;
-  border-bottom: 2px solid $color-green--light;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
+  border-bottom: 3px solid $color-green--light;
 
   &__welcome {
     font-size: $fs-med;
@@ -296,8 +305,8 @@ $fs-xs: 1rem;
     &--title {
       font-size: $fs-huge;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
+      letter-spacing: 1px;
+      font-weight: 500;
     }
 
     &--img {
@@ -317,14 +326,50 @@ $fs-xs: 1rem;
 
     &--btn-clear {
       border: none;
+      background: none;
+      transition: all .2s;
     }
 
     &--btn-clear:hover {
       cursor: pointer;
+      transform: translateY(-2px);
     }
 
     & .icon {
       font-size: $fs-sml;
     }
+  }
+}
+
+.comments {
+  padding: 0 $space-lrg;
+  
+  &__comment {
+    padding: $space-sml;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid $color-green--dark;
+    
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &--user {
+      margin-right: $space-med;
+      align-self: flex-start;
+      font-size: $fs-sml;
+      font-weight: 500;
+    }
+
+    &--copy {
+      flex: 1;
+      letter-spacing: 1px;
+    }
+
+    &--date-time {
+      margin-left: $space-xl;
+      font-weight: 500;
+    }
+
   }
 }
