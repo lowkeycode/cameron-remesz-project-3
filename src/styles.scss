@@ -267,18 +267,18 @@ $fs-sml: 1.25rem;
 $fs-xs: 1rem;
 
 .main {
-  // height: 100vh;
-  max-width: 1200px;
+  width: 1200px;
   background: $color-white;
   margin: 0 auto;
   font-family: $font-primary;
   color: $color-font;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 15px;
   border: 1px solid $color-green--light;
-  
+  position: relative;
+
   display: grid;
-  // ! Add send section
   grid-template-rows: 7rem minmax(calc(100vh - 7rem), min-content);
 }
 
@@ -307,6 +307,7 @@ $fs-xs: 1rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 500;
+      align-self: flex-end;
     }
 
     &--img {
@@ -327,7 +328,7 @@ $fs-xs: 1rem;
     &--btn-clear {
       border: none;
       background: none;
-      transition: all .2s;
+      transition: all 0.2s;
     }
 
     &--btn-clear:hover {
@@ -343,15 +344,16 @@ $fs-xs: 1rem;
 
 .comments {
   padding: 0 $space-lrg;
-  
+
   &__comment {
-    padding: $space-sml;
+    padding: $space-med;
     display: flex;
     align-items: center;
     border-bottom: 2px solid $color-green--dark;
-    
+
     &:last-of-type {
       border-bottom: none;
+      padding-bottom: 7rem;
     }
 
     &--user {
@@ -369,7 +371,53 @@ $fs-xs: 1rem;
     &--date-time {
       margin-left: $space-xl;
       font-weight: 500;
+      color: $color-brown;
     }
+  }
+}
 
+.send {
+  justify-self: center;
+
+
+  border: 1px solid $color-green--dark;
+  border-radius: 5px;
+  position: fixed;
+  height: 5rem;
+  width: calc(1200px - 2rem);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-green--light;
+  
+
+  &__container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    & input {
+      width: 80%;
+      border: none;
+      height: 2rem;
+      
+    }
+  
+    & button {
+      cursor: pointer;
+      width: 20%;
+      height: 2rem;
+      border: 1px solid $color-green--dark;
+      color: $color-white;
+      text-transform: uppercase;
+      background-color: $color-green--dark;
+      
+    }
   }
 }
