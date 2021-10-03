@@ -361,6 +361,7 @@ $fs-xs: 1rem;
       align-self: flex-start;
       font-size: $fs-sml;
       font-weight: 500;
+      width: 10rem;
     }
 
     &--copy {
@@ -372,6 +373,9 @@ $fs-xs: 1rem;
       margin-left: $space-xl;
       font-weight: 500;
       color: $color-brown;
+      justify-self: flex-start;
+      width: 8rem;
+      align-self: flex-start;
     }
   }
 }
