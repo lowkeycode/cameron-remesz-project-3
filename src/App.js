@@ -11,15 +11,14 @@ import Send from "./components/Send";
 import "./styles.scss";
 
 function App() {
-  const [commentList, setCommentList] = useState([]);
+  let [commentList, setCommentList] = useState([]);
+  const [sendInput, setSendInput] = useState("");
 
   useEffect(() => {
     const dbRef = ref(realtime);
 
     onValue(dbRef, (snapshot) => {
       const comments = snapshot.val();
-
-      console.log("Snapshot.val():", snapshot.val());
 
       const dbList = [];
 
@@ -39,13 +38,42 @@ function App() {
     });
   }, []);
 
-  console.log(commentList);
+  const handleChange = (e) => {
+    setSendInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (sendInput) {
+      const dbRef = ref(realtime);
+
+      const currentDateTime = new Date(Date.now());
+
+      const formattedDateTime = new Intl.DateTimeFormat("en-us", {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      }).format(currentDateTime);
+
+      const formattedSendInput = {
+        userName: "Anonymous",
+        comment: sendInput,
+        commentDate: formattedDateTime,
+      };
+
+      push(dbRef, formattedSendInput);
+
+      setSendInput("");
+    }
+  };
 
   return (
     <main className="main">
       <Header />
       <Comments commentList={commentList} />
-      <Send />
+      <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
     </main>
   );
 }
