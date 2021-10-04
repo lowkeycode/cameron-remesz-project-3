@@ -20,14 +20,19 @@ export const Header = ({ onClick, currentUser }) => (
     <Logo/>
 
     <div className="header__clear">
-      <p className="header__clear--copy">Clear chat</p>
-      <button className="header__clear--btn-clear" onClick={onClick}>
-        <FontAwesomeIcon
-          className="icon"
-          icon={faTimesCircle}
-          color="#2f2b23"
-        />
-      </button>
+      <div className="clear-container">
+        <p className="header__clear--copy">Clear chat</p>
+        <button className="header__clear--btn-clear" onClick={onClick}>
+          <FontAwesomeIcon
+            className="icon"
+            icon={faTimesCircle}
+            color="#2f2b23"
+          />
+        </button>
+      </div>
+      <div>
+        <button className="log-out-btn">Log out</button>
+      </div>
     </div>
   </header>
 );
