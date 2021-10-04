@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
-export const Header = ({ onClick, currentUser }) => (
+export const Header = ({ onClick, currentUser, signOut }) => (
   <header className="header">
     <div className="header__welcome">
       {
@@ -20,14 +20,19 @@ export const Header = ({ onClick, currentUser }) => (
     <Logo/>
 
     <div className="header__clear">
-      <p className="header__clear--copy">Clear chat</p>
-      <button className="header__clear--btn-clear" onClick={onClick}>
-        <FontAwesomeIcon
-          className="icon"
-          icon={faTimesCircle}
-          color="#2f2b23"
-        />
-      </button>
+      <div className="clear-container">
+        <p className="header__clear--copy">Clear chat</p>
+        <button className="header__clear--btn-clear" onClick={onClick}>
+          <FontAwesomeIcon
+            className="icon"
+            icon={faTimesCircle}
+            color="#2f2b23"
+          />
+        </button>
+      </div>
+      <div>
+        <button className="log-out-btn" onClick={signOut}>Log out</button>
+      </div>
     </div>
   </header>
 );
