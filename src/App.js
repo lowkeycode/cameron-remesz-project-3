@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { ref, onValue, push, remove } from "firebase/database";
 
 // Utils
@@ -98,13 +98,26 @@ function App() {
     remove(dbRef);
   }
 
+  // Sign out user
+  const signOutUser = () => {
+    console.log('signing out');
+    const auth = getAuth();
+    signOut(auth)
+    .then(() => {
+      setLoggedIn(false);
+      setUser({});
+    }).catch(err => {
+      alert(err.messsage);
+    })
+  }
+
   // If logged in render app, otherwise show sign in
   return (
     <main className="main">
       {
         loggedIn ? (
           <>
-            <Header currentUser={user.displayName} onClick={handleClear}/>
+            <Header currentUser={user.displayName} onClick={handleClear} signOut={signOutUser}/>
             <Comments commentList={commentList} />
             <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
           </>
