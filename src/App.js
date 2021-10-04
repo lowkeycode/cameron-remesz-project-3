@@ -69,9 +69,15 @@ function App() {
     }
   };
 
+  const handleClear = () => {
+    const dbRef = ref(realtime);
+
+    remove(dbRef);
+  }
+
   return (
     <main className="main">
-      <Header />
+      <Header onClick={handleClear}/>
       <Comments commentList={commentList} />
       <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
     </main>
