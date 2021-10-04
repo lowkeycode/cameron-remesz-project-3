@@ -1,8 +1,4 @@
 const Comments = ({ commentList }) => {
-  //todo Create date variable to get timestamp here and return below
-
-  console.log("From Comments props", commentList);
-
   return (
     <section className="comments">
       {commentList.map((comment, i) => {
