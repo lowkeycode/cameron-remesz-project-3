@@ -1,19 +1,23 @@
 import "../styles.scss";
-import logo from "../chatter-logo.svg";
+
+import Logo from './Logo';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
-export const Header = ({ onClick }) => (
+export const Header = ({ onClick, currentUser }) => (
   <header className="header">
     <div className="header__welcome">
-      <p>Welcome to...</p>
+      {
+        currentUser ? (
+          <p>Welcome, <span>{currentUser}</span></p>
+        ) : (
+          <p>Welcome to...</p>
+        )
+      }
     </div>
 
-    <div className="header__chatter">
-      <h1 className="header__chatter--title">Chatter</h1>
-      <img className="header__chatter--img" src={logo} alt="Chatter logo" />
-    </div>
+    <Logo/>
 
     <div className="header__clear">
       <p className="header__clear--copy">Clear chat</p>

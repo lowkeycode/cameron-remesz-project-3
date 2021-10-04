@@ -1,19 +1,40 @@
 import { useState, useEffect } from "react";
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ref, onValue, push, remove } from "firebase/database";
 
-import realtime from "./firebase";
+// Utils
+import realtime from "./firebase/realtime";
+import redirect from './firebase/auth';
 
+// Components
 import Header from "./components/Header";
 import Comments from "./components/Comments";
 import Send from "./components/Send";
+import SignIn from './components/SignIn';
 
+// Styles
 import "./styles.scss";
 
-function App() {
-  let [commentList, setCommentList] = useState([]);
-  const [sendInput, setSendInput] = useState("");
 
+function App() {
+  const [commentList, setCommentList] = useState([]);
+  const [sendInput, setSendInput] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({})
+
+  //  Set up subscription for auth 
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, user => {
+    console.log('from AuthStateChanged', user);
+    if(user) {
+      setLoggedIn(true);
+      setUser(user);
+    }
+  })
+  }, [])
+
+  // Set up subscription for db
   useEffect(() => {
     const dbRef = ref(realtime);
 
@@ -23,9 +44,8 @@ function App() {
       const dbList = [];
 
       for (let comment in comments) {
-        //todo Make key the hash from firebase and pass through props to each comment
+        
         const commentObj = {
-          key: comment,
           userName: comments[comment].userName,
           comment: comments[comment].comment,
           commentDate: comments[comment].commentDate,
@@ -38,10 +58,12 @@ function App() {
     });
   }, []);
 
+  // Get message input and save to state
   const handleChange = (e) => {
     setSendInput(e.target.value);
   };
 
+  // Format message object to save to db and push to db 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,7 +80,7 @@ function App() {
       }).format(currentDateTime);
 
       const formattedSendInput = {
-        userName: "Anonymous",
+        userName: user.displayName,
         comment: sendInput,
         commentDate: formattedDateTime,
       };
@@ -69,17 +91,27 @@ function App() {
     }
   };
 
+  // Clear db
   const handleClear = () => {
     const dbRef = ref(realtime);
 
     remove(dbRef);
   }
 
+  // If logged in render app, otherwise show sign in
   return (
     <main className="main">
-      <Header onClick={handleClear}/>
-      <Comments commentList={commentList} />
-      <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
+      {
+        loggedIn ? (
+          <>
+            <Header currentUser={user.displayName} onClick={handleClear}/>
+            <Comments commentList={commentList} />
+            <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
+          </>
+        ) : (
+          <SignIn signIn={redirect}/>
+        )
+      }
     </main>
   );
 }

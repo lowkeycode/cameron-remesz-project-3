@@ -266,6 +266,7 @@ $fs-med: 1.563rem;
 $fs-sml: 1.25rem;
 $fs-xs: 1rem;
 
+// MAIN
 .main {
   width: 1200px;
   background: $color-white;
@@ -282,6 +283,7 @@ $fs-xs: 1rem;
   grid-template-rows: 7rem minmax(calc(100vh - 7rem), min-content);
 }
 
+// HEADER
 .header {
   height: 7rem;
   display: flex;
@@ -289,10 +291,15 @@ $fs-xs: 1rem;
   align-items: center;
   padding: 1.5rem 1.5rem 2rem 1.5rem;
   border-bottom: 3px solid $color-green--light;
+  position: relative;
 
   &__welcome {
-    font-size: $fs-med;
+    font-size: $fs-sml;
     letter-spacing: 1px;
+
+    & span {
+      display: block;
+    }
   }
 
   &__chatter {
@@ -301,6 +308,9 @@ $fs-xs: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
     &--title {
       font-size: $fs-huge;
@@ -342,6 +352,7 @@ $fs-xs: 1rem;
   }
 }
 
+// COMMENTS
 .comments {
   padding: 0 $space-lrg;
 
@@ -380,6 +391,7 @@ $fs-xs: 1rem;
   }
 }
 
+// SEND
 .send {
   justify-self: center;
 
@@ -410,10 +422,12 @@ $fs-xs: 1rem;
       height: 2rem;
       font-family: $font-primary;
       padding-left: 8px;
+      
 
       &:placeholder {
         color: $color-brown;
       }
+
     }
 
     & button {
@@ -427,3 +441,40 @@ $fs-xs: 1rem;
     }
   }
 }
+
+// SIGN IN
+.sign-in {
+  height: 60vh;
+  padding: $space-med;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__message {
+    margin: $space-xl 0 $space-med 0;
+    font-size: $fs-med;
+    letter-spacing: 1px;
+  }
+
+  .sign-in-btn {
+    height: 3rem;
+    padding: 0 $space-med;
+    border: 1px solid $color-font;
+    background: $color-green--light;
+    font-family: $font-primary;
+    font-weight: 500;
+    font-size: $fs-sml;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-font;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .sign-in-btn:hover,
+  .sign-in-btn:focus {
+    background: $color-green--dark;
+  }
+}
+
