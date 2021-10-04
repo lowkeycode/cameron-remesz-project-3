@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, user => {
-    console.log('from AuthStateChanged', user);
+    
     if(user) {
       setLoggedIn(true);
       setUser(user);
@@ -100,7 +100,7 @@ function App() {
 
   // Sign out user
   const signOutUser = () => {
-    console.log('signing out');
+    
     const auth = getAuth();
     signOut(auth)
     .then(() => {
