@@ -307,6 +307,10 @@ $fs-xs: 1rem;
     height: 9rem;
   }
 
+  @media only screen and (max-width: 500px) {
+    padding: 0;
+  }
+
   &__welcome {
     font-size: $fs-sml;
     letter-spacing: 1px;
@@ -348,7 +352,9 @@ $fs-xs: 1rem;
       justify-content: center;
       width: 100%;
       margin-bottom: $space-sml;
+    }
 
+    @media only screen and (max-width: 500px) {
     }
 
     &--title {
@@ -364,6 +370,10 @@ $fs-xs: 1rem;
 
       @media only screen and (max-width: 800px) {
         margin-right: $space-sml;
+      }
+
+      @media only screen and (max-width: 500px) {
+        font-size: $fs-lrg;
       }
     }
 
@@ -392,7 +402,16 @@ $fs-xs: 1rem;
       flex-direction: row;
       justify-content: center;
       width: 100%;
+    }
 
+    @media only screen and (max-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 90%;
     }
 
     & .clear-container {
@@ -402,15 +421,12 @@ $fs-xs: 1rem;
 
       @media only screen and (max-width: 800px) {
         justify-content: center;
-        width: 25%;
-        margin-right: $space-xl;
-        border: 1px solid red;
+        width: 7rem;
       }
     }
 
     &--copy {
       font-size: $fs-sml;
-      border: 1px solid blue;
 
       @media only screen and (max-width: 950px) {
         font-size: $fs-xs;
@@ -419,7 +435,6 @@ $fs-xs: 1rem;
       @media only screen and (max-width: 800px) {
         margin-right: $space-xs;
       }
-
     }
 
     &--btn-clear {
@@ -456,8 +471,6 @@ $fs-xs: 1rem;
         font-size: $fs-xs;
         width: 6rem;
       }
-
-      
     }
 
     & .log-out-btn:hover,
@@ -483,6 +496,10 @@ $fs-xs: 1rem;
     @media only screen and (max-width: 800px) {
       flex-direction: column;
       align-items: center;
+    }
+
+    @media only screen and (max-width: 500px) {
+      padding: $space-sml 0;
     }
 
     &:last-of-type {
@@ -541,7 +558,7 @@ $fs-xs: 1rem;
         width: 100%;
         margin-left: 0;
         order: 1;
-        margin: .25rem 0 $space-sml 0;
+        margin: 0.25rem 0 $space-sml 0;
       }
     }
   }
@@ -576,6 +593,10 @@ $fs-xs: 1rem;
     border-radius: 5px;
     overflow: hidden;
 
+    @media only screen and (max-width: 500px) {
+      flex-direction: column;
+    }
+
     & input {
       width: 80%;
       border: none;
@@ -585,6 +606,10 @@ $fs-xs: 1rem;
 
       &:placeholder {
         color: $color-brown;
+      }
+
+      @media only screen and (max-width: 500px) {
+        width: 100%;
       }
     }
 
@@ -596,6 +621,10 @@ $fs-xs: 1rem;
       color: $color-white;
       text-transform: uppercase;
       background-color: $color-green--dark;
+
+      @media only screen and (max-width: 500px) {
+        width: 100%;
+      }
     }
   }
 }
