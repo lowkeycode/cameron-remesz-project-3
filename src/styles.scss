@@ -643,6 +643,13 @@ $fs-xs: 1rem;
       display: flex;
       justify-content: space-around;
     }
+
+    @media only screen and (max-width: 800px) {
+      position: none;
+      left: auto;
+      transform: none;
+      align-self: center;
+    }
   }
 
   &__message {
@@ -652,6 +659,11 @@ $fs-xs: 1rem;
 
     @media only screen and (max-width: 950px) {
       font-size: $fs-sml;
+    }
+
+    @media only screen and (max-width: 800px) {
+      margin: $space-med 0;
+      text-align: center;
     }
   }
 
@@ -678,5 +690,27 @@ $fs-xs: 1rem;
   .sign-in-btn:hover,
   .sign-in-btn:focus {
     background: $color-green--dark;
+  }
+
+  .created {
+    position: absolute;
+    bottom: 3rem;
+    text-align: center;
+
+    & a:link,
+    a:visited {
+      text-decoration: none;
+      color: $color-green--dark;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    & a:hover,
+    a:active {
+      color: $color-brown;
+    }
+    & span {
+      display: block;
+    }
   }
 }
