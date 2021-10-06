@@ -11,7 +11,7 @@ const SignIn = ({ signIn }) => (
     </div>
     <div class="created">lowkey created at  
       <span>
-        <a href="https://junocollege.com/" target="_blank"> &mdash; Juno College of Technology &mdash;</a>
+        <a href="https://junocollege.com/" target="_blank" rel="noreferrer"> &mdash; Juno College of Technology &mdash;</a>
       </span> 
     </div>
   </div>
