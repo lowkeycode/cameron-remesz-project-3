@@ -13,6 +13,7 @@ const Send = ({ onChange, value, onSubmit }) => (
         id="comment"
         onChange={onChange}
         value={value}
+        required
         placeholder="Send a message..."
       />
       <button>Send</button>
