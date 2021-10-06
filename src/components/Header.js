@@ -23,6 +23,7 @@ export const Header = ({ onClick, currentUser, signOut }) => (
       <div className="clear-container">
         <p className="header__clear--copy">Clear chat</p>
         <button className="header__clear--btn-clear" onClick={onClick}>
+          <span className="sr-only">Clear chat button</span>
           <FontAwesomeIcon
             className="icon"
             icon={faTimesCircle}

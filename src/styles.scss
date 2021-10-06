@@ -228,6 +228,10 @@ template {
 html {
   box-sizing: border-box;
   font-size: 125%;
+
+  @media only screen and (max-width: 950px) {
+    font-size: 112%;
+  }
 }
 
 h1 {
@@ -281,6 +285,10 @@ $fs-xs: 1rem;
 
   display: grid;
   grid-template-rows: 7rem minmax(calc(100vh - 7rem), min-content);
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 }
 
 // HEADER
@@ -293,12 +301,30 @@ $fs-xs: 1rem;
   border-bottom: 3px solid $color-green--light;
   position: relative;
 
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    height: 9rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    padding: 0;
+  }
+
   &__welcome {
     font-size: $fs-sml;
     letter-spacing: 1px;
 
+    @media only screen and (max-width: 950px) {
+      font-size: $fs-xs;
+    }
+
     & span {
       display: block;
+    }
+
+    @media only screen and (max-width: 800px) {
+      display: none;
     }
   }
 
@@ -312,16 +338,52 @@ $fs-xs: 1rem;
     left: 50%;
     transform: translateX(-50%);
 
+    @media only screen and (max-width: 800px) {
+      position: relative;
+    }
+
+    @media only screen and (max-width: 950px) {
+      width: 40%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @media only screen and (max-width: 800px) {
+      justify-content: center;
+      width: 100%;
+      margin-bottom: $space-sml;
+    }
+
+    @media only screen and (max-width: 500px) {
+    }
+
     &--title {
       font-size: $fs-huge;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 500;
       align-self: flex-end;
+
+      @media only screen and (max-width: 950px) {
+        font-size: $fs-xl;
+      }
+
+      @media only screen and (max-width: 800px) {
+        margin-right: $space-sml;
+      }
+
+      @media only screen and (max-width: 500px) {
+        font-size: $fs-lrg;
+      }
     }
 
     &--img {
       height: 3.5rem;
+
+      @media only screen and (max-width: 950px) {
+        margin-top: 3px;
+        height: 3rem;
+      }
     }
   }
 
@@ -334,15 +396,45 @@ $fs-xs: 1rem;
     display: flex;
     flex-direction: column;
     align-items: space-around;
+    font-size: $fs-sml;
+
+    @media only screen and (max-width: 800px) {
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 90%;
+    }
 
     & .clear-container {
       width: inherit;
       display: flex;
       justify-content: space-between;
+
+      @media only screen and (max-width: 800px) {
+        justify-content: center;
+        width: 7rem;
+      }
     }
 
     &--copy {
       font-size: $fs-sml;
+
+      @media only screen and (max-width: 950px) {
+        font-size: $fs-xs;
+      }
+
+      @media only screen and (max-width: 800px) {
+        margin-right: $space-xs;
+      }
     }
 
     &--btn-clear {
@@ -350,6 +442,10 @@ $fs-xs: 1rem;
       background: none;
       transition: all 0.2s;
       margin-top: 2px;
+
+      @media only screen and (max-width: 950px) {
+        margin-top: 0;
+      }
     }
 
     &--btn-clear:hover {
@@ -365,11 +461,16 @@ $fs-xs: 1rem;
       width: 8rem;
       background: $color-red;
       border: 1px solid $color-white;
-      padding: .25rem 0;
+      padding: 0.25rem 0;
       color: $color-white;
       cursor: pointer;
-      transition: all .2s;
+      transition: all 0.2s;
       border-radius: 3px;
+
+      @media only screen and (max-width: 950px) {
+        font-size: $fs-xs;
+        width: 6rem;
+      }
     }
 
     & .log-out-btn:hover,
@@ -382,12 +483,24 @@ $fs-xs: 1rem;
 // COMMENTS
 .comments {
   padding: 0 $space-lrg;
+  @media only screen and (max-width: 800px) {
+    padding-top: $space-lrg;
+  }
 
   &__comment {
     padding: $space-med;
     display: flex;
     align-items: center;
     border-bottom: 2px solid $color-green--dark;
+
+    @media only screen and (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media only screen and (max-width: 500px) {
+      padding: $space-sml 0;
+    }
 
     &:last-of-type {
       border-bottom: none;
@@ -400,20 +513,53 @@ $fs-xs: 1rem;
       font-size: $fs-sml;
       font-weight: 500;
       width: 10rem;
+
+      @media only screen and (max-width: 1200px) {
+        width: 15%;
+      }
+
+      @media only screen and (max-width: 950px) {
+        font-size: $fs-xs;
+      }
+
+      @media only screen and (max-width: 800px) {
+        font-size: $fs-sml;
+        width: 100%;
+      }
     }
 
     &--copy {
       flex: 1;
       letter-spacing: 1px;
+
+      @media only screen and (max-width: 1200px) {
+        width: 100%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        order: 2;
+        font-size: $fs-sml;
+      }
     }
 
     &--date-time {
-      margin-left: $space-xl;
+      margin-left: $space-med;
       font-weight: 500;
       color: $color-brown;
       justify-self: flex-start;
       width: 8rem;
       align-self: flex-start;
+
+      @media only screen and (max-width: 1200px) {
+        width: 15%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        width: 100%;
+        margin-left: 0;
+        order: 1;
+        margin: 0.25rem 0 $space-sml 0;
+      }
     }
   }
 }
@@ -433,6 +579,10 @@ $fs-xs: 1rem;
   justify-content: center;
   background: $color-green--light;
 
+  @media only screen and (max-width: 1200px) {
+    width: 85%;
+  }
+
   &__container {
     width: 65%;
     display: flex;
@@ -443,18 +593,24 @@ $fs-xs: 1rem;
     border-radius: 5px;
     overflow: hidden;
 
+    @media only screen and (max-width: 500px) {
+      flex-direction: column;
+    }
+
     & input {
       width: 80%;
       border: none;
       height: 2rem;
       font-family: $font-primary;
       padding-left: 8px;
-      
 
       &:placeholder {
         color: $color-brown;
       }
 
+      @media only screen and (max-width: 500px) {
+        width: 100%;
+      }
     }
 
     & button {
@@ -465,6 +621,10 @@ $fs-xs: 1rem;
       color: $color-white;
       text-transform: uppercase;
       background-color: $color-green--dark;
+
+      @media only screen and (max-width: 500px) {
+        width: 100%;
+      }
     }
   }
 }
@@ -477,10 +637,34 @@ $fs-xs: 1rem;
   flex-direction: column;
   align-items: center;
 
+  & .header__chatter {
+    @media only screen and (max-width: 950px) {
+      width: 40%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @media only screen and (max-width: 800px) {
+      position: none;
+      left: auto;
+      transform: none;
+      align-self: center;
+    }
+  }
+
   &__message {
     margin: $space-xl 0 $space-med 0;
     font-size: $fs-med;
     letter-spacing: 1px;
+
+    @media only screen and (max-width: 950px) {
+      font-size: $fs-sml;
+    }
+
+    @media only screen and (max-width: 800px) {
+      margin: $space-med 0;
+      text-align: center;
+    }
   }
 
   .sign-in-btn {
@@ -496,12 +680,37 @@ $fs-xs: 1rem;
     color: $color-font;
     border-radius: 5px;
     cursor: pointer;
-    transition: all .2s;
+    transition: all 0.2s;
+
+    @media only screen and (max-width: 950px) {
+      font-size: $fs-sml;
+    }
   }
 
   .sign-in-btn:hover,
   .sign-in-btn:focus {
     background: $color-green--dark;
   }
-}
 
+  .created {
+    position: absolute;
+    bottom: 3rem;
+    text-align: center;
+
+    & a:link,
+    a:visited {
+      text-decoration: none;
+      color: $color-green--dark;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    & a:hover,
+    a:focus {
+      color: $color-brown;
+    }
+    & span {
+      display: block;
+    }
+  }
+}

@@ -1,61 +1,65 @@
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { ref, onValue, push, remove } from "firebase/database";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { ref, onValue, push, remove} from "firebase/database";
 
 // Utils
 import realtime from "./firebase/realtime";
-import redirect from './firebase/auth';
+import redirect from "./firebase/auth";
 
 // Components
 import Header from "./components/Header";
 import Comments from "./components/Comments";
 import Send from "./components/Send";
-import SignIn from './components/SignIn';
+import SignIn from "./components/SignIn";
 
 // Styles
 import "./styles.scss";
 
-
 function App() {
+  // State
   const [commentList, setCommentList] = useState([]);
   const [sendInput, setSendInput] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  //  Set up subscription for auth 
+  //  Set up subscription for auth
   useEffect(() => {
     const auth = getAuth();
-    onAuthStateChanged(auth, user => {
-    
-    if(user) {
-      setLoggedIn(true);
-      setUser(user);
-    }
-  })
-  }, [])
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setLoggedIn(true);
+      }
+    });
+  }, []);
 
   // Set up subscription for db
   useEffect(() => {
     const dbRef = ref(realtime);
 
-    onValue(dbRef, (snapshot) => {
-      const comments = snapshot.val();
+    onValue(
+      dbRef,
+      (snapshot) => {
+        const comments = snapshot.val();
 
-      const dbList = [];
+        const dbList = [];
 
-      for (let comment in comments) {
-        
-        const commentObj = {
-          userName: comments[comment].userName,
-          comment: comments[comment].comment,
-          commentDate: comments[comment].commentDate,
-        };
+        for (let comment in comments) {
+          const commentObj = {
+            userName: comments[comment].userName,
+            comment: comments[comment].comment,
+            commentDate: comments[comment].commentDate,
+          };
 
-        dbList.push(commentObj);
+          dbList.push(commentObj);
+        }
+
+        setCommentList(dbList);
+      },
+      (err) => {
+        console.log(err);
       }
-
-      setCommentList(dbList);
-    });
+    );
   }, []);
 
   // Get message input and save to state
@@ -63,13 +67,14 @@ function App() {
     setSendInput(e.target.value);
   };
 
-  // Format message object to save to db and push to db 
+  // Format message object to save to db and push to db
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (sendInput) {
       const dbRef = ref(realtime);
 
+      // Formate date stamp
       const currentDateTime = new Date(Date.now());
 
       const formattedDateTime = new Intl.DateTimeFormat("en-us", {
@@ -79,12 +84,14 @@ function App() {
         minute: "numeric",
       }).format(currentDateTime);
 
+      // Format message object
       const formattedSendInput = {
         userName: user.displayName,
         comment: sendInput,
         commentDate: formattedDateTime,
       };
 
+      // Push to db
       push(dbRef, formattedSendInput);
 
       setSendInput("");
@@ -96,35 +103,41 @@ function App() {
     const dbRef = ref(realtime);
 
     remove(dbRef);
-  }
+  };
 
   // Sign out user
   const signOutUser = () => {
-    
     const auth = getAuth();
     signOut(auth)
-    .then(() => {
-      setLoggedIn(false);
-      setUser({});
-    }).catch(err => {
-      alert(err.messsage);
-    })
-  }
+      .then(() => {
+        setLoggedIn(false);
+        setUser({});
+      })
+      .catch((err) => {
+        alert(err.messsage);
+      });
+  };
 
   // If logged in render app, otherwise show sign in
   return (
     <main className="main">
-      {
-        loggedIn ? (
-          <>
-            <Header currentUser={user.displayName} onClick={handleClear} signOut={signOutUser}/>
-            <Comments commentList={commentList} />
-            <Send onSubmit={handleSubmit} onChange={handleChange} value={sendInput} />
-          </>
-        ) : (
-          <SignIn signIn={redirect}/>
-        )
-      }
+      {loggedIn ? (
+        <>
+          <Header
+            currentUser={user.displayName}
+            onClick={handleClear}
+            signOut={signOutUser}
+          />
+          <Comments commentList={commentList} />
+          <Send
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            value={sendInput}
+          />
+        </>
+      ) : (
+        <SignIn signIn={redirect} />
+      )}
     </main>
   );
 }
