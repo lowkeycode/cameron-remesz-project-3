@@ -1,4 +1,5 @@
 // Should use a UUID for the key 
+//  Map over comment list from App.js state and render each comment
 
 const Comments = ({ commentList }) => (
     <section className="comments">

@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 
 import { getDatabase } from 'firebase/database';
 
+//  Just a realtime db doing realtime db stuff
+
 const firebaseConfig = {
   apiKey: "AIzaSyDQLmouyP_bpmXhIvl8Oh_vNtVPogA42F4",
   authDomain: "chatter-b0c82.firebaseapp.com",

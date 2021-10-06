@@ -26,8 +26,11 @@ function App() {
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
+
       if (user) {
+        //  If user signs in put them in state (don't really do anything with this but could be handy in the future)
         setUser(user);
+        //  Set logged in to true to remove sign in componenet and display main appp
         setLoggedIn(true);
       }
     });
@@ -42,8 +45,10 @@ function App() {
       (snapshot) => {
         const comments = snapshot.val();
 
+        // Initialize empty array to push each formatted comment object to
         const dbList = [];
 
+        //  Loop comments in db and format
         for (let comment in comments) {
           const commentObj = {
             userName: comments[comment].userName,
@@ -54,9 +59,13 @@ function App() {
           dbList.push(commentObj);
         }
 
+        // Set to state so we can utilize
         setCommentList(dbList);
       },
       (err) => {
+        // Spent too long looking into error handling with firebase and getting nowhere and couldn't get this to throw
+
+        // An optional callback that will be notified if your event subscription is ever canceled because your client does not have permission to read this data (or it had permission but has now lost it). This callback will be passed an Error object indicating why the failure occurred.
         console.log(err);
       }
     );
@@ -74,7 +83,7 @@ function App() {
     if (sendInput) {
       const dbRef = ref(realtime);
 
-      // Formate date stamp
+      // Format date stamp from time of submit
       const currentDateTime = new Date(Date.now());
 
       const formattedDateTime = new Intl.DateTimeFormat("en-us", {
@@ -98,7 +107,7 @@ function App() {
     }
   };
 
-  // Clear db
+  // Clear db & in turn all comments
   const handleClear = () => {
     const dbRef = ref(realtime);
 

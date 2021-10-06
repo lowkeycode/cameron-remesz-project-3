@@ -1,5 +1,7 @@
 import Logo from "./Logo";
 
+// Sign in button gets signIn={redirect} method to use Google authentication. Chose a redirect sign in over a pop up as firebase mentioned it it a better UX on mobile
+
 const SignIn = ({ signIn }) => (
   <div className="sign-in">
     <Logo />
