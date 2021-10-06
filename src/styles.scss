@@ -706,7 +706,7 @@ $fs-xs: 1rem;
     }
 
     & a:hover,
-    a:active {
+    a:focus {
       color: $color-brown;
     }
     & span {
